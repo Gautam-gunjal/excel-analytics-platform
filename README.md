@@ -8,31 +8,27 @@ Admins get an overview of usage and can manage users and uploaded files.
 
 ## ✨ Features
 
-## Table of Contents
+## 📑 Table of Contents
 
-- [Features](#features)
-  - [User Features](#user-features)
+- [Features](#-features)
+  - [User Features](#-user-features)
     - [Authentication](#authentication)
-    - [Excel Upload & Parsing](#excel-upload-and-parsing)
-    - [History & Dataset Management](#history-and-dataset-management)
+    - [Excel Upload & Parsing](#excel-upload--parsing)
+    - [History & Dataset Management](#history--dataset-management)
     - [Chart Builder](#chart-builder)
     - [Export to PDF](#export-to-pdf)
-  - [Admin Features](#admin-features)
-    - [Admin Dashboard](#admin-dashboard)
-    - [User & Upload Management](#user-and-upload-management)
-    - [Admin creation note](#admin-creation-note)
-- [Tech Stack](#tech-stack)
-  - [Frontend](#frontend)
-  - [Backend](#backend)
-- [Project Structure](#project-structure)
-- [Environment Variables](#environment-variables)
-  - [Backend (`backend/.env`)](#backend-backendenv)
-  - [Frontend (`frontend/.env`)](#frontend-frontendenv)
-- [Getting Started](#getting-started)
+  - [Admin Features](#-admin-features)
+- [Tech Stack](#-tech-stack)
+- [Project Structure](#-project-structure)
+- [Environment Variables](#-environment-variables)
+  - [Backend env](#backend-backendenv)
+  - [Frontend env](#frontend-frontendenv)
+- [Getting Started](#-getting-started)
   - [Backend Setup](#backend-setup)
   - [Frontend Setup](#frontend-setup)
 - [API Overview](#api-overview)
 - [License](#license)
+
 
 
 ### 👤 User Features
