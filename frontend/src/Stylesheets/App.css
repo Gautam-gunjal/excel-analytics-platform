@@ -1,0 +1,129 @@
+/* ─────────────── NAVBAR / TOPBAR (App Header) ─────────────── */
+
+.topbar {
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 24px;
+
+  padding: 18px 56px;
+
+  background:
+    radial-gradient(circle at 0% 0%, rgba(59, 130, 246, 0.25), transparent 55%),
+    radial-gradient(circle at 100% 0%, rgba(168, 85, 247, 0.25), transparent 55%),
+    #020617;
+  box-shadow: 0 10px 30px rgba(15, 23, 42, 0.75);
+  border-bottom: 1px solid rgba(148, 163, 184, 0.35);
+  backdrop-filter: blur(18px);
+}
+
+/* Logo on the left */
+.logo {
+  font-size: 2rem;
+  font-weight: 800;
+  letter-spacing: -0.04em;
+  background: linear-gradient(135deg, #3b82f6 0%, #a855f7 50%, #ec4899 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  cursor: pointer;
+  white-space: nowrap;
+}
+
+/* Right-side nav container */
+.nav {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+/* Base pill style */
+.nav-link,
+.nav-btn,
+.nav-user {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 8px 20px;
+  border-radius: 999px;
+
+  font-size: 0.95rem;
+  font-weight: 600;
+  border: 1px solid transparent;
+  text-decoration: none;
+  white-space: nowrap;
+
+  color: #e5e7eb;
+  background: rgba(15, 23, 42, 0.6);
+
+  box-shadow: 0 10px 25px rgba(15, 23, 42, 0.6);
+  transition: transform 0.18s ease, box-shadow 0.18s ease,
+              background 0.18s ease, border-color 0.18s ease, opacity 0.18s ease;
+}
+
+/* Gradient pills for key actions */
+.nav-user,
+.nav-link {
+  background: linear-gradient(135deg, #7c3aed 0%, #4f46e5 50%, #0ea5e9 100%);
+}
+
+/* 🔴 Red gradient pill for Logout button */
+.nav-btn {
+  background: linear-gradient(135deg, #ef4444 0%, #dc2626 50%, #b91c1c 100%);
+}
+
+/* Non-clickable user label */
+.nav-user {
+  cursor: default;
+  border-color: rgba(129, 140, 248, 0.45);
+  box-shadow: 0 12px 30px rgba(88, 28, 135, 0.65);
+}
+
+/* Hover effects for clickable items */
+.nav-link:hover,
+.nav-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 16px 36px rgba(15, 23, 42, 0.8);
+  opacity: 0.98;
+  border-color: rgba(148, 163, 184, 0.4);
+}
+
+/* Small press effect */
+.nav-link:active,
+.nav-btn:active {
+  transform: translateY(0);
+  box-shadow: 0 10px 24px rgba(15, 23, 42, 0.7);
+}
+
+/* Focus-visible for accessibility */
+.nav-link:focus-visible,
+.nav-btn:focus-visible {
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.6);
+}
+
+/* Responsive Navbar */
+@media (max-width: 768px) {
+  .topbar {
+    padding: 14px 20px;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 10px;
+  }
+
+  .nav {
+    align-self: flex-end;
+    gap: 10px;
+    flex-wrap: wrap;
+  }
+
+  .nav-link,
+  .nav-btn,
+  .nav-user {
+    padding: 6px 14px;
+    font-size: 0.85rem;
+  }
+}

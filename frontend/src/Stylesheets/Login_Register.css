@@ -1,0 +1,367 @@
+:root {
+  --bg-a: #0f1724;           /* page background base */
+  --bg-b: #07102a;           /* page background gradient end */
+  --card: rgba(255,255,255,0.08);
+  --card-2: rgba(255,255,255,0.06);
+  --accent: #5b8cff;
+  --accent-2: #7ee1ff;
+  --accent-glow: rgba(91, 140, 255, 0.3);
+  --muted: #a8b0c7;
+  --glass-border: rgba(255,255,255,0.12);
+  --radius: 16px;
+  --shadow: 0 20px 40px rgba(2,6,23,0.8);
+  --glass-blur: 16px;
+  font-family: Inter, ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+}
+
+/* Page layout with animated gradient */
+.auth-page {
+  min-height: 90vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 48px 20px;
+  background: linear-gradient(-45deg, var(--bg-a), var(--bg-b) 60%, #0a1120);
+  background-size: 400% 400%;
+  animation: gradientShift 8s ease infinite;
+  color: #e6eef8;
+  position: relative;
+  overflow: hidden;
+}
+
+/* Animated background elements */
+.auth-page::before {
+  content: "";
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: radial-gradient(circle, rgba(91, 140, 255, 0.05) 0%, transparent 70%);
+  animation: float 20s infinite linear;
+  pointer-events: none;
+}
+
+@keyframes gradientShift {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+@keyframes float {
+  0% { transform: translate(0, 0) rotate(0deg); }
+  100% { transform: translate(-50%, -50%) rotate(360deg); }
+}
+
+/* Grid container */
+.auth-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 32px;
+  width: min(1000px, 96%);
+  align-items: center;
+  position: relative;
+  z-index: 2;
+}
+
+@media (min-width: 900px) {
+  .auth-grid {
+    grid-template-columns: 1fr 1fr;
+    gap: 40px;
+  }
+}
+
+/* Glass card */
+.auth-card {
+  background: linear-gradient(135deg, rgba(255,255,255,0.05), rgba(255,255,255,0.02));
+  border-radius: var(--radius);
+  padding: 32px;
+  box-shadow: 
+    var(--shadow),
+    inset 0 1px 0 rgba(255,255,255,0.1),
+    0 0 0 1px rgba(255,255,255,0.02);
+  border: 1px solid var(--glass-border);
+  backdrop-filter: blur(var(--glass-blur)) saturate(180%);
+  position: relative;
+  overflow: hidden;
+  width: 100%;
+  max-width: 420px;
+  margin: 0 auto;
+  animation: floatCard 6s ease-in-out infinite;
+}
+
+.auth-card:nth-child(2) {
+  animation-delay: 1s;
+}
+
+/* Hover effects */
+.auth-card:hover { 
+  transform: translateY(-8px) scale(1.01);
+  box-shadow: 
+    0 30px 60px rgba(2,6,23,0.9),
+    inset 0 1px 0 rgba(255,255,255,0.15),
+    0 0 0 1px rgba(255,255,255,0.05);
+}
+
+/* Border gradient */
+.auth-card::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: var(--radius);
+  padding: 2px;
+  background: linear-gradient(45deg, var(--accent), var(--accent-2), var(--accent));
+  mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  mask-composite: exclude;
+  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  opacity: 0;
+  transition: opacity 500ms ease;
+  pointer-events: none; /* ✅ Fix: doesn’t block inputs */
+}
+
+.auth-card:hover::after {
+  opacity: 0.4;
+  animation: borderGlow 2s ease-in-out infinite;
+}
+
+@keyframes borderGlow {
+  0%, 100% { opacity: 0.4; }
+  50% { opacity: 0.8; }
+}
+
+/* Header */
+.auth-card h2 {
+  margin: 0 0 24px 0;
+  font-size: 1.6rem;
+  font-weight: 700;
+  letter-spacing: -0.3px;
+  background: linear-gradient(135deg, var(--accent), var(--accent-2));
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  text-shadow: 0 2px 4px rgba(0,0,0,0.2);
+}
+
+.auth-card h2::after {
+  content: "";
+  position: absolute;
+  bottom: -8px;
+  left: 0;
+  width: 40px;
+  height: 3px;
+  background: linear-gradient(90deg, var(--accent), transparent);
+  border-radius: 2px;
+  pointer-events: none;
+}
+
+/* Form */
+.auth-card form {
+  display: grid;
+  gap: 16px;
+}
+
+/* Inputs */
+.auth-card input {
+  appearance: none;
+  -webkit-appearance: none;
+  width: 100%;
+  padding: 14px 5px;
+  border-radius: 12px;
+  border: 1.5px solid rgba(255,255,255,0.08);
+  background: linear-gradient(135deg, rgba(255,255,255,0.03), rgba(255,255,255,0.01));
+  color: #f0f6ff;
+  font-size: 0.95rem;
+  outline: none;
+  transition: all 300ms cubic-bezier(0.4, 0, 0.2, 1);
+  box-shadow: 
+    inset 0 1px 3px rgba(0,0,0,0.1),
+    0 1px 0 rgba(255,255,255,0.02);
+  z-index: 2;
+  position: relative;
+}
+
+.auth-card input::placeholder { 
+  color: rgba(230,240,255,0.5);
+  transition: all 300ms ease;
+}
+
+.auth-card input:focus {
+  transform: translateY(-2px);
+  border-color: var(--accent);
+  background: linear-gradient(135deg, rgba(255,255,255,0.05), rgba(255,255,255,0.02));
+  box-shadow: 
+    0 8px 24px rgba(91,140,255,0.2),
+    0 0 0 4px rgba(91,140,255,0.1),
+    inset 0 1px 3px rgba(0,0,0,0.1);
+}
+
+.auth-card input:focus::placeholder {
+  transform: translateX(8px);
+  opacity: 0.7;
+}
+
+
+.auth-switch {
+  margin-top: 16px;
+  font-size: 0.9rem;
+  color: var(--muted);
+  text-align: center;
+}
+
+.auth-switch a {
+  color: var(--accent);
+  font-weight: 600;
+  text-decoration: none;
+  transition: color 0.3s;
+}
+
+.auth-switch a:hover {
+  color: var(--accent-2);
+  text-decoration: underline;
+}
+
+
+/* Button */
+.btn {
+  display: inline-grid;
+  place-items: center;
+  padding: 14px 20px;
+  border-radius: 12px;
+  font-weight: 600;
+  font-size: 0.95rem;
+  cursor: pointer;
+  border: none;
+  background: linear-gradient(135deg, var(--accent), var(--accent-2));
+  color: #022144;
+  box-shadow: 
+    0 12px 30px rgba(37,84,168,0.25),
+    0 4px 12px rgba(2,6,23,0.4),
+    inset 0 1px 0 rgba(255,255,255,0.3);
+  transition: all 300ms cubic-bezier(0.4, 0, 0.2, 1);
+  position: relative;
+  overflow: hidden;
+  margin-top: 8px;
+}
+
+.btn::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+  transition: left 0.5s ease;
+  pointer-events: none;
+}
+
+.btn:hover {
+  transform: translateY(-3px);
+  box-shadow: 
+    0 20px 40px rgba(37,84,168,0.35),
+    0 6px 18px rgba(2,6,23,0.5),
+    inset 0 1px 0 rgba(255,255,255,0.4);
+  background: linear-gradient(135deg, var(--accent), #72d0ff);
+}
+
+.btn:hover::before {
+  left: 100%;
+}
+
+.btn:active {
+  transform: translateY(-1px);
+  transition: transform 100ms;
+}
+
+/* Decorative accent stripe */
+.auth-card::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 8px;
+  height: 100%;
+  background: linear-gradient(180deg, var(--accent), var(--accent-2), var(--accent));
+  border-top-left-radius: var(--radius);
+  border-bottom-left-radius: var(--radius);
+  opacity: 0.15;
+  filter: blur(2px);
+  transition: opacity 400ms ease;
+  pointer-events: none; /* ✅ Fix */
+}
+
+.auth-card:hover::before {
+  opacity: 0.25;
+  animation: stripePulse 3s ease-in-out infinite;
+}
+
+@keyframes stripePulse {
+  0%, 100% { opacity: 0.25; }
+  50% { opacity: 0.35; }
+}
+
+/* Floating animation */
+@keyframes floatCard {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-5px); }
+}
+
+/* Responsive */
+@media (max-width: 520px) {
+  .auth-card { 
+    padding: 24px; 
+    border-radius: 14px;
+    margin: 0 8px;
+  }
+  
+  .auth-card h2 { 
+    font-size: 1.4rem; 
+    margin-bottom: 20px;
+  }
+  
+  .auth-grid {
+    gap: 24px;
+  }
+}
+
+/* Loading button */
+.btn.loading {
+  pointer-events: none;
+  opacity: 0.8;
+}
+
+.btn.loading::after {
+  content: "";
+  width: 16px;
+  height: 16px;
+  border: 2px solid transparent;
+  border-top: 2px solid currentColor;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+  margin-left: 8px;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+
+.error-msg {
+  margin-top: 7px;
+  margin-bottom: 10px;
+  padding: 10px;
+  background: #ffe5e5;
+  color: #d32f2f;
+  border: 1px solid #f5c2c2;
+  border-radius: 6px;
+  font-size: 14px;
+  text-align: center;
+  animation: fadeIn 0.3s ease-in-out;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(-5px); }
+  to { opacity: 1; transform: translateY(0); }
+}

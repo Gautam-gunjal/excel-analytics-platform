@@ -1,0 +1,394 @@
+/* ===================================================================
+   Dashboard (Scoped)
+   All selectors scoped under .dashboard-page to prevent leakage.
+   =================================================================== */
+
+/* -------------------------
+   Page background / wrapper
+   ------------------------- */
+.dashboard-page {
+  min-height: calc(100vh - 80px);
+  padding: 32px 0 40px;
+  background:
+    radial-gradient(circle at 0% 0%, rgba(148, 163, 184, 0.25), transparent 55%),
+    radial-gradient(circle at 100% 100%, rgba(59, 130, 246, 0.18), transparent 55%),
+    #f3f4f6;
+  display: flex;
+  flex-direction: column;    /* <- changed: stack title above grid */
+  align-items: center;       /* <- changed: center children horizontally */
+  justify-content: flex-start; /* <- changed: keep content toward top */
+  font-family: "Inter", system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+}
+
+/* -------------------------
+   Layout / Container
+   ------------------------- */
+.dashboard-page .dashboard {
+  display: grid;
+  grid-template-columns: 360px 1fr;
+  gap: 28px;
+  max-width: 1280px;
+  width: 100%;
+  padding: 0 24px;
+  /* no other changes */
+}
+
+/* -------------------------
+   Left / Right columns
+   ------------------------- */
+.dashboard-page .left {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.dashboard-page .right {
+  background: #ffffff;
+  padding: 24px 28px;
+  border-radius: 18px;
+  box-shadow: 0 18px 45px rgba(15, 23, 42, 0.08);
+  border: 1px solid rgba(148, 163, 184, 0.25);
+  backdrop-filter: blur(10px);
+}
+
+/* -------------------------
+   Headings
+   ------------------------- */
+.dashboard-page h2 {
+  color: #0f172a;
+  font-size: 1.4rem;
+  font-weight: 700;
+  margin: 0 0 1.25rem 0;
+  padding-bottom: 0.75rem;
+  border-bottom: 2px solid rgba(148, 163, 184, 0.35);
+}
+
+.dashboard-page h3 {
+  margin: 0.5rem 0 0.75rem 0;
+  color: #0f172a;
+  font-size: 1.05rem;
+  font-weight: 600;
+}
+
+.dashboard-page .dashboard-title {
+  width: 100%;              
+  max-width: 1280px;        
+  margin: 12px 0 28px;
+  text-align: center;
+
+  
+  font-size: clamp(1.8rem, 3.6vw, 2.6rem);
+  font-weight: 800;
+  line-height: 1.02;
+  letter-spacing: -0.5px;
+
+ 
+  color: #0f172a;
+  background: linear-gradient(90deg, #0f172a 0%, #3b82f6 55%, #6366f1 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+
+ 
+  text-shadow: 0 6px 18px rgba(59, 130, 246, 0.06);
+  position: relative;
+  padding-bottom: 14px; 
+  transition: transform 0.18s ease, color 0.18s ease;
+}
+
+.dashboard-page .dashboard-title::after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%) translateY(0);
+  bottom: 4px;
+  height: 6px;
+  width: clamp(72px, 9%, 160px);
+  border-radius: 999px;
+  background: linear-gradient(90deg, rgba(99,102,241,1) 0%, rgba(59,130,246,1) 100%);
+  box-shadow: 0 8px 26px rgba(59,130,246,0.14);
+  opacity: 0.98;
+  transition: transform 0.28s cubic-bezier(.2,.9,.2,1), opacity 0.18s ease;
+}
+
+
+.dashboard-page .dashboard-title:hover {
+  transform: translateY(-2px);
+}
+.dashboard-page .dashboard-title:hover::after {
+  transform: translateX(-50%) translateY(-1px) scaleX(1.04);
+}
+
+
+/* -------------------------
+   Upload Panel (modern card)
+   ------------------------- */
+.dashboard-page .upload-panel {
+  background: #ffffff;
+  padding: 20px 22px;
+  border-radius: 18px;
+  box-shadow: 0 18px 45px rgba(15, 23, 42, 0.08);
+  border: 1px solid rgba(148, 163, 184, 0.25);
+  transition: transform 0.18s ease, box-shadow 0.18s ease, border-color 0.18s ease;
+  text-align: center;
+}
+
+.dashboard-page .upload-panel:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 22px 55px rgba(15, 23, 42, 0.12);
+  border-color: rgba(59, 130, 246, 0.45);
+}
+
+/* ensure file input is block-level and clearly visible across browsers */
+.dashboard-page .upload-panel input[type="file"] {
+  display: block;
+  width: 100%;
+  padding: 14px;
+  border: 1.5px dashed rgba(148, 163, 184, 0.8);
+  border-radius: 12px;
+  background: #f9fafb;
+  transition: border-color 0.2s ease, background-color 0.2s ease, box-shadow 0.2s ease;
+  margin-bottom: 14px;
+  font-size: 0.9rem;
+  cursor: pointer;
+}
+
+.dashboard-page .upload-panel input[type="file"]:hover {
+  border-color: rgba(59, 130, 246, 0.75);
+  background: #f3f4ff;
+}
+
+.dashboard-page .upload-panel input[type="file"]:focus {
+  outline: none;
+  border-color: rgba(59, 130, 246, 0.9);
+  box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.18);
+}
+
+.dashboard-page .upload-panel button {
+  margin-top: 14px;
+  width: 100%;
+  padding: 14px;
+  background: linear-gradient(135deg, #6366f1 0%, #3b82f6 100%);
+  color: #fff;
+  border: none;
+  border-radius: 999px;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  box-shadow: 0 8px 22px rgba(59,130,246,.45);
+  transition: .25s ease;
+}
+
+.dashboard-page .upload-panel button:hover:not(:disabled) {
+  transform: translateY(-2px);
+  box-shadow: 0 15px 30px rgba(59,130,246,.55);
+}
+
+.dashboard-page .upload-panel button:disabled {
+  background: #cbd5e1;
+  cursor: not-allowed;
+  box-shadow: none;
+  opacity: 0.95;
+}
+
+
+/* -------------------------
+   History List (enhanced)
+   ------------------------- */
+.dashboard-page .history-list {
+  list-style: none;
+  padding: 0;
+  margin: 4px 0 0 0;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.dashboard-page .history-list li {
+  margin: 0;
+}
+
+.dashboard-page .history-list li button,
+.dashboard-page .history-list button {
+  width: 100%;
+  text-align: left;
+  padding: 12px 14px;
+  border: 1px solid rgba(226, 232, 240, 0.95);
+  background: #ffffff;
+  border-radius: 12px;
+  cursor: pointer;
+  font-size: 0.88rem;
+  transition: transform 0.15s ease, box-shadow 0.15s ease, border-color 0.15s ease,
+              background-color 0.15s ease;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  color: #475569;
+  line-height: 1.4;
+}
+
+.dashboard-page .history-list li button:hover {
+  background: #f8fafc;
+  box-shadow: 0 10px 24px rgba(15, 23, 42, 0.05);
+  border-color: rgba(148, 163, 184, 0.7);
+  transform: translateY(-1px);
+}
+
+.dashboard-page .history-list li button:active {
+  transform: translateY(0);
+  box-shadow: 0 4px 12px rgba(15, 23, 42, 0.05);
+}
+
+.dashboard-page .history-list .file-name {
+  font-weight: 600;
+  color: #0f172a;
+}
+
+.dashboard-page .history-list .file-date {
+  font-size: 0.78rem;
+  color: #94a3b8;
+}
+
+/* -------------------------
+   Chart Builder area
+   ------------------------- */
+.dashboard-page .chart-builder {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Controls block */
+.dashboard-page .controls {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 18px;
+  margin-bottom: 24px;
+  padding: 18px 20px;
+  background: #f9fafb;
+  border-radius: 14px;
+  border: 1px solid rgba(226, 232, 240, 0.9);
+}
+
+.dashboard-page .controls label {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  font-size: 0.82rem;
+  color: #64748b;
+  font-weight: 600;
+}
+
+.dashboard-page .controls select {
+  padding: 10px 12px;
+  border: 1px solid rgba(203, 213, 225, 0.9);
+  border-radius: 10px;
+  background: #ffffff;
+  font-size: 0.9rem;
+  transition: border-color 0.18s ease, box-shadow 0.18s ease, background-color 0.18s ease;
+  appearance: none;
+  background-image: url("data:image/svg+xml;charset=US-ASCII,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 4 5'><path fill='%23666' d='M2 0L0 2h4zm0 5L0 3h4z'/></svg>");
+  background-repeat: no-repeat;
+  background-position: right 10px center;
+  background-size: 11px;
+}
+
+.dashboard-page .controls select:focus {
+  outline: none;
+  border-color: rgba(59, 130, 246, 0.9);
+  box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.18);
+}
+
+.dashboard-page .controls button {
+  padding: 10px 22px;
+  background: linear-gradient(135deg, #2563eb 0%, #1d4ed8 100%); /* darker blue */
+  color: #ffffff;
+  border: 1px solid #1d4ed8;
+  border-radius: 999px;
+  font-weight: 600;
+  cursor: pointer;
+  align-self: flex-end;
+
+  box-shadow: 0 8px 18px rgba(37, 99, 235, 0.45);
+  text-shadow: 0 1px 2px rgba(15, 23, 42, 0.35);
+
+  transition: transform 0.18s ease, box-shadow 0.18s ease, opacity 0.18s ease;
+}
+
+.dashboard-page .controls button:hover {
+  background: linear-gradient(135deg, #1d4ed8 0%, #1e40af 100%);
+  box-shadow: 0 12px 26px rgba(30, 64, 175, 0.55);
+  transform: translateY(-1px);
+}
+
+/* keep this directly after the two rules above */
+.dashboard-page .controls button:disabled {
+  background: #e5e7eb;
+  color: #6b7280;
+  border: 1px solid #d1d5db;
+  box-shadow: none;
+  cursor: not-allowed;
+  transform: none;
+  opacity: 1;
+}
+
+
+/* Plot area */
+.dashboard-page .plot-area {
+  background: #ffffff;
+  padding: 22px;
+  border-radius: 14px;
+  box-shadow: 0 14px 32px rgba(15, 23, 42, 0.06);
+  border: 1px solid rgba(226, 232, 240, 0.9);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 420px;
+}
+
+.dashboard-page .plot-area p {
+  color: #94a3b8;
+  font-size: 1.02rem;
+}
+
+/* -------------------------
+   Accessibility / small helpers
+   ------------------------- */
+.dashboard-page .history-list button:focus,
+.dashboard-page .upload-panel button:focus,
+.dashboard-page .controls button:focus {
+  outline: 3px solid rgba(59, 130, 246, 0.16);
+  outline-offset: 2px;
+}
+
+/* -------------------------
+   Responsive (scoped)
+   ------------------------- */
+@media (max-width: 1200px) {
+  .dashboard-page .dashboard {
+    grid-template-columns: 320px 1fr;
+    gap: 22px;
+    padding: 0 18px;
+  }
+}
+
+@media (max-width: 900px) {
+  .dashboard-page {
+    padding-top: 20px;
+  }
+
+  .dashboard-page .dashboard {
+    display: flex;
+    flex-direction: column;
+    padding: 0 16px;
+    gap: 16px;
+  }
+
+  .dashboard-page .right {
+    padding: 20px;
+  }
+
+  .dashboard-page .plot-area {
+    min-height: 320px;
+    padding: 16px;
+  }
+}
