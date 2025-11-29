@@ -20,7 +20,7 @@ Admins get an overview of usage and can manage users and uploaded files.
   - [Admin Features](#-admin-features)
   - [Tech Stack](#-tech-stack)
   - [Project Structure](#-project-structure)
-  - [Environment Variables](#-environment-variables)
+  - [Environment Variables](#environment-variables-️)
   - [Backend env](#backend-backendenv)
   - [Frontend env](#frontend-frontendenv)
 - [Getting Started](#-getting-started)
@@ -159,7 +159,7 @@ excel-analytics-platform/
 
 ---
 
-## ⚙️ Environment Variables
+## Environment Variables  ⚙️
 
 ### Backend (`backend/.env`)
 
