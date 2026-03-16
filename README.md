@@ -91,7 +91,7 @@ Admins get an overview of usage and can manage users and uploaded files.
 To explore the **Admin Dashboard**, use the demo credentials below:
 
 **Email:** [admin@gmail.com](mailto:admin@gmail.com)
-**Password:** 12345
+**Password:** admin@123
 
 > ⚠️ Note: This is a demo admin account provided for reviewers to explore the admin functionality.
 > In production environments, admin accounts are created directly in the database with secure hashed passwords.
