@@ -62,15 +62,40 @@ Admins get an overview of usage and can manage users and uploaded files.
 
 ### 🛠 Admin Features
 
-- **Admin Dashboard**
-  - View **all uploads** across all users with:
-    - File name
-    - User name & email
-    - Upload timestamp
-  - View **high-level statistics**:
-    - Total uploads
-    - Total users (computed from the data)
-    - Upload counts grouped by user
+* **Admin Dashboard**
+
+  * View **all uploads** across all users with:
+
+    * File name
+    * User name & email
+    * Upload timestamp
+  * View **high-level statistics**:
+
+    * Total uploads
+    * Total users (computed from the data)
+    * Upload counts grouped by user
+
+* **User & Upload Management**
+
+  * Delete specific uploads from the admin dashboard.
+  * Dedicated backend helper methods:
+
+    * Cascade delete uploads when a user is deleted.
+    * Delete associated files from disk (`/uploads` directory).
+  * Protected routes via `auth` + `admin` middleware.
+
+---
+
+### 🔑 Admin Demo Credentials
+
+To explore the **Admin Dashboard**, use the demo credentials below:
+
+**Email:** [admin@gmail.com](mailto:admin@gmail.com)
+**Password:** 12345
+
+> ⚠️ Note: This is a demo admin account provided for reviewers to explore the admin functionality.
+> In production environments, admin accounts are created directly in the database with secure hashed passwords.
+
 
 - **User & Upload Management**
   - Delete specific uploads from the admin dashboard.
@@ -78,9 +103,6 @@ Admins get an overview of usage and can manage users and uploaded files.
     - Cascade delete uploads when a user is deleted.
     - Delete associated files from disk (`/uploads` directory).
   - Protected routes via `auth` + `admin` middleware.
-
-> ⚠️ Note: By default, the frontend registration flow creates normal users (`role: "user"`).  
-> To create an admin, manually set a user's `role` to `"admin"` in MongoDB or call `/api/auth/register` with `role: "admin"`.
 
 ---
 
