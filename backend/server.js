@@ -4,7 +4,7 @@ const cors = require('cors');
 const connectDB = require('./config/db');
 const authRoutes = require('./routes/auth');
 const uploadRoutes = require('./routes/uploads');
-const adminRoutes = require('./routes/admin'); // ✅ add this
+const adminRoutes = require('./routes/admin'); 
 const path = require('path');
 const fs = require('fs');
 
@@ -12,7 +12,9 @@ const app = express();
 connectDB();
 
 app.use(express.json());
-app.use(cors());
+app.use(cors({
+  origin:'https://excel-analytics-platform-lac-eight.vercel.app'
+}));
 app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
 
 // ensure uploads dir exists
@@ -22,7 +24,7 @@ if (!fs.existsSync(uploadDir)) fs.mkdirSync(uploadDir);
 // routes
 app.use('/api/auth', authRoutes);
 app.use('/api/uploads', uploadRoutes);
-app.use('/api/admin', adminRoutes); // ✅ mount admin routes
+app.use('/api/admin', adminRoutes); 
 
 // -----------------------
 // Additional route to match frontend deleteUser helper:

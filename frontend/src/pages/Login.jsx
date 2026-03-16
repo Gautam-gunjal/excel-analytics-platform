@@ -18,14 +18,13 @@ export default function Login({ onLogin }) {
       localStorage.setItem('user', JSON.stringify(res.user));
       onLogin && onLogin(res.user);
 
-      // ✅ Navigate to dashboard (not landing page)
       nav('/dashboard');
     } catch (err) {
       setError(err?.response?.data?.message || err.message);
     }
   };
 
-  // 👇 Auto-hide error after 5s
+  //  Auto-hide error after 5s
   useEffect(() => {
     if (error) {
       const timer = setTimeout(() => setError(''), 5000);
@@ -38,7 +37,7 @@ export default function Login({ onLogin }) {
       <div className="auth-card">
         <h2>Login</h2>
 
-        {/* 👇 Error Message */}
+        {/*  Error Message */}
         {error && (
           <div className="error-msg">
             {error}
@@ -63,7 +62,7 @@ export default function Login({ onLogin }) {
           <button type="submit" className="btn">Login</button>
         </form>
 
-        {/* 👇 Register option */}
+        {/*  Register option */}
         <p className="auth-switch">
           Don’t have an account?{" "}
           <Link to="/register">Register here</Link>

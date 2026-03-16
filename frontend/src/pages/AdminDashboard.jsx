@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { getAllUploads, deleteUser, deleteUpload } from '../api/api';
-import '../Stylesheets/admindashboard.css'; // ⬅️ changed from styles.css
+import '../Stylesheets/admindashboard.css'; 
 
 export default function AdminDashboard() {
   const [uploads, setUploads] = useState([]);

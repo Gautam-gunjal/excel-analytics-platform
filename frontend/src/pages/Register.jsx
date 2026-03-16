@@ -14,14 +14,14 @@ export default function Register({ onRegister }) {
     try {
       const res = await register({ name, email, password });
 
-      // ✅ Save user and token
+      //  Save user and token
       localStorage.setItem('token', res.token);
       localStorage.setItem('user', JSON.stringify(res.user));
 
-      // ✅ Update state in App
+      //  Update state in App
       onRegister && onRegister(res.user);
 
-      // ✅ Go directly to dashboard (not landing page)
+      //  Go directly to dashboard (not landing page)
       nav('/dashboard');
     } catch (err) {
       alert(err?.response?.data?.message || err.message);
